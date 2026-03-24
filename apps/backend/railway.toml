@@ -1,0 +1,8 @@
+git add .
+git commit -m "add railway config"
+git push origin main --force
+```
+
+Also go to Railway → backend → **Variables** and add:
+```
+NODE_VERSION=20
