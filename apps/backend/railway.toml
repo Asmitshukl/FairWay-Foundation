@@ -1,8 +1,5 @@
-git add .
-git commit -m "add railway config"
-git push origin main --force
-```
+[build]
+buildCommand = "npm install -g pnpm && pnpm install --no-frozen-lockfile && pnpm run build"
 
-Also go to Railway → backend → **Variables** and add:
-```
-NODE_VERSION=20
+[deploy]
+startCommand = "node dist/index.js"
