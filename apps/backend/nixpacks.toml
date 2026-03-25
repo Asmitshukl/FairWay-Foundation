@@ -4,11 +4,11 @@ nixPkgs = ["nodejs_20"]
 [phases.install]
 cmds = [
   "npm install -g pnpm",
-  "cd /app && pnpm install --no-frozen-lockfile"
+  "pnpm install --no-frozen-lockfile"
 ]
 
 [phases.build]
-cmds = ["pnpm run build"]
+cmds = ["pnpm --filter backend run build"]
 
 [start]
-cmd = "node dist/index.js"
+cmd = "node apps/backend/dist/index.js"
