@@ -1,159 +1,125 @@
-# Turborepo starter
 
-This Turborepo starter is maintained by the Turborepo core team.
+# FairWay Foundation 🏌️‍♂️
 
-## Using this example
+A subscription-based golf charity platform combining performance tracking, monthly prize draws, and charitable giving. Built as part of the Digital Heroes Full-Stack Development Trainee Selection Process.
 
-Run the following command:
+🌐 **Live Website**: [fair-way-foundation-client.vercel.app](https://fair-way-foundation-client-hakdc3be1-asmitshukls-projects.vercel.app)
 
-```sh
-npx create-turbo@latest
+---
+
+## 📋 Overview
+
+FairWay Foundation is a modern web application where golfers subscribe, enter their Stableford scores, participate in monthly prize draws, and contribute to charities they care about. The platform is designed to feel emotionally engaging — leading with charitable impact, not sport.
+
+---
+
+## ✨ Features
+
+**For Users**
+- Monthly & yearly subscription plans via Stripe
+- Golf score entry (Stableford format, rolling 5-score system)
+- Monthly prize draw participation (3, 4, and 5-number match tiers)
+- Charity selection and contribution management
+- User dashboard with subscription status, scores, draw history, and winnings
+
+**For Admins**
+- Full user & subscription management
+- Draw configuration (random or algorithmic), simulation, and publishing
+- Charity directory management
+- Winner verification and payout tracking
+- Reports and analytics
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React + Vite + TypeScript |
+| Backend | Node.js + Express + TypeScript |
+| Database | MongoDB Atlas |
+| Payments | Stripe |
+| Auth | JWT |
+| Monorepo | pnpm workspaces + Turborepo |
+| Deployment | Vercel (client) + Railway (backend) |
+
+---
+
+## 📁 Project Structure
+
+```
+FairWay-Foundation/
+├── apps/
+│   ├── client/          # Vite React frontend
+│   └── backend/         # Express API server
+├── packages/
+│   ├── db/              # Shared database models
+│   ├── ui/              # Shared UI components
+│   └── typescript-config/
+├── pnpm-workspace.yaml
+└── turbo.json
 ```
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## 🚀 Getting Started
 
-### Apps and Packages
+### Prerequisites
+- Node.js 20+
+- pnpm 9+
+- MongoDB Atlas account
+- Stripe account
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Installation
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
+```bash
+git clone https://github.com/Asmitshukl/FairWay-Foundation.git
+cd FairWay-Foundation
+pnpm install
+npm run dev
 ```
 
-Without global `turbo`, use your package manager:
+### Environment Variables
 
-```sh
-cd my-turborepo
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+Create `apps/backend/.env`:
+
+```env
+PORT=3000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=7d
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_PRICE_MONTHLY=your_monthly_price_id
+STRIPE_PRICE_YEARLY=your_yearly_price_id
+STRIPE_WEBHOOK_SECRET=your_webhook_secret
+CLIENT_URL=http://localhost:5173
+POOL_CONTRIBUTION_PER_USER=5
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+Create `apps/client/.env`:
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo build --filter=docs
+```env
+VITE_API_URL=http://localhost:3000/api
 ```
 
-Without global `turbo`:
+---
 
-```sh
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+## 🧪 Test Checklist
 
-### Develop
+- ✅ User signup & login
+- ✅ Subscription flow (monthly and yearly)
+- ✅ Score entry — 5-score rolling logic
+- ✅ Draw system logic and simulation
+- ✅ Charity selection and contribution calculation
+- ✅ Winner verification flow and payout tracking
+- ✅ User Dashboard — all modules functional
+- ✅ Admin Panel — full control and usability
+- ✅ Responsive design on mobile and desktop
 
-To develop all apps and packages, run the following command:
+---
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+## 📜 License
 
-```sh
-cd my-turborepo
-turbo dev
-```
+ISC
 
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+---
