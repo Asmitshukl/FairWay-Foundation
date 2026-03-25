@@ -8,4 +8,4 @@ cmds = ["pnpm install --no-frozen-lockfile"]
 cmds = ["pnpm --filter client build"]
 
 [start]
-cmd = "npx serve dist"
+cmd = "npx serve apps/client/dist"
