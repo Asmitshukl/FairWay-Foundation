@@ -2,5 +2,5 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "npx serve apps/client/dist -l 8080"
+startCommand = "node apps/backend/dist/index.js"
 restartPolicyType = "on_failure"
